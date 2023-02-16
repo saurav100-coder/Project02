@@ -1,0 +1,90 @@
+﻿@model Project02.Models.StudentInfo
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Add New Student</h1>
+<hr />
+      <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row mb-3">
+                <div class="col-sm-3 col-form-label">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="col-sm-3 col-form-label">
+                    <label asp-for="Class" class="control-label"></label>
+                    <input asp-for="Class" class="form-control" />
+                    <span asp-validation-for="Class" class="text-danger"></span>
+                </div>
+                @*<div class="col-sm-2">
+                    <label  class="control-label"></label>
+                    <a id="Addbutton" href="#"><i class="fa-solid fa-2x fa-plus"></i></a>
+                    
+                </div>*@
+            </div>
+            <h2>Create dynamic button and text box creations using javascript</h2>
+            <div id="object_data"></div>
+            <button name="add_button" value="Add New" id="add_button" onclick="addButton()"> Add New </button>
+
+           
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+            <div class="form-group">
+                <a class="btn btn-outline-danger" href="/">Cancel</a>
+             </div>
+
+            
+      </form>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+        var i = 1; // define global variable i to loop the button click event as much as we want
+
+        function addButton() {
+
+            var new_line = document.createElement("br");
+            var new_line_2 = document.createElement("br");
+
+            // these both of the lines will create dynamically new lines before putting any new textbox and button control.
+
+            // create new text box control below using attribute of input type text box and assign name and id dynamically by using variable i defined as global variable above.
+
+            var textbox = document.createElement("input");
+            textbox.type = "text";
+            textbox.name = "txt_" + i;
+            textbox.id = "txtid" + i;
+            textbox.placeholder = "txt_" + i;
+
+            //var btn = document.createElement("input");
+            //btn.type = "button";
+            //btn.name = "button" + i;
+            //btn.value = "Click Me";
+            //btn.id = "id" + i;
+
+            // assign click event for each new button element created dynamically using attribiute of input type button and assign name and id dynamically using variable i defined as global variable above.
+
+            btn.setAttribute("onClick", "showMessage()");
+
+            //on click on every newly created button a "showMessage" javascript function will call, which will show us the value of their corresponding text box.
+
+            // assign both of these textbox and button controls to blank div by id "object_data" in html document using below code.
+
+            document.getElementById("object_data").appendChild(textbox);
+            //document.getElementById("object_data").appendChild(btn);
+            document.getElementById("object_data").appendChild(new_line);
+            document.getElementById("object_data").appendChild(new_line_2);
+
+
+            i++ //increment the counter
+        }
+        </script>
+}
