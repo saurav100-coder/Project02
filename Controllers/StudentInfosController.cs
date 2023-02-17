@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Nancy.Json;
 using Project02.Data;
 using Project02.Models;
+//using System.Web.Script.Serilization;
 
 namespace Project02.Controllers
 {
@@ -20,7 +23,7 @@ namespace Project02.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            StudentInfo studentInfo = new StudentInfo();
+            StudentInfo studentInfo = new StudentInfo() { StudentId = 1};
             return View(studentInfo);
         }
         [HttpPost]
@@ -28,7 +31,12 @@ namespace Project02.Controllers
         {
             _context.Add(studentInfo);
             _context.SaveChanges();
+            Count();
             return RedirectToAction("Index");
+        }
+        public void Count()
+        {
+            ViewBag.Count = _context.StudentInfos.Count();
         }
     }
 }
