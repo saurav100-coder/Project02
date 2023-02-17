@@ -1,4 +1,5 @@
-﻿@model Project02.Models.StudentInfo
+﻿@*@model Project02.Models.StudentInfo*@
+@model List<Project02.Models.StudentInfo>
 
 @{
     ViewData["Title"] = "Create";
@@ -10,22 +11,7 @@
         </div>
         <form enctype="multipart/form-data" asp-action="Create">
             <div class="row">
-               @* <div class="col-md-6">
-                    <div asp-validation-summary="ModelOnly" class="text-danger">
-                        <div class="form-group">
-                            <label asp-for="Name" class="control-label"></label>
-                            <input asp-for="Name" class="form-control" />
-                            <span asp-validation-for="Name" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>*@
-              @*  <div class="col-md-6">
-                        <div class="form-group">
-                            <label asp-for="Class" class="control-label"></label>
-                            <input asp-for="Class" class="form-control" />
-                            <span asp-validation-for="Class" class="text-danger"></span>
-                        </div>
-                </div>*@
+             
                 <div class="col-md-12">
                     <table id="ExpTable" class="table table-stripped table-sm">
                         <thead>
@@ -42,14 +28,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for(int i=0; i < 1;i++)
+                            @for(int i=0; i < Model.Count;i++)
                             {
                                 <tr>
                                     <td>
-                                        @Html.EditorFor(x => x.Name, new{ htmlAttributeValue= new {@class = "form-control"}})
-                                    </td>
+                                        @Html.EditorFor(x => x[i].Name, new{ htmlAttributeValue= new {@class = "form-control"}})
+                                                  </td>
                                     <td>
-                                        @Html.EditorFor(x => x.Class, new{ htmlAttributeValue= new {@class = "form-control"}})
+                                        @Html.EditorFor(x => x[i].Class, new{ htmlAttributeValue= new {@class = "form-control"}})
+                                        
                                     </td>
 
                                     <td>
